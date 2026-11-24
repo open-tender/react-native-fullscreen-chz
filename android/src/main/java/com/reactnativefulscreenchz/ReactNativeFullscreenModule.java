@@ -1,6 +1,7 @@
- package com.reactnativefullscreenchz;
+package com.reactnativefullscreenchz;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.os.Build;
 import android.view.View;
 import android.view.WindowManager;
@@ -12,8 +13,6 @@ import com.facebook.react.bridge.UiThreadUtil;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.Promise;
 import android.content.pm.PackageManager;
-
-import java.util.Objects;
 
 
 public class ReactNativeFullscreenModule extends ReactContextBaseJavaModule {
@@ -30,7 +29,11 @@ public class ReactNativeFullscreenModule extends ReactContextBaseJavaModule {
                 new Runnable() {
                     @Override
                     public void run() {
-                        Objects.requireNonNull(getCurrentActivity()).getWindow().getDecorView().setSystemUiVisibility(
+                        Activity activity = getCurrentActivity();
+                        if (activity == null) {
+                            return;
+                        }
+                        activity.getWindow().getDecorView().setSystemUiVisibility(
                                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
                                         View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
                                         View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
@@ -50,7 +53,11 @@ public class ReactNativeFullscreenModule extends ReactContextBaseJavaModule {
                 new Runnable() {
                     @Override
                     public void run() {
-                        Objects.requireNonNull(getCurrentActivity()).getWindow().getDecorView().setSystemUiVisibility(
+                        Activity activity = getCurrentActivity();
+                        if (activity == null) {
+                            return;
+                        }
+                        activity.getWindow().getDecorView().setSystemUiVisibility(
                                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         );
                     }
@@ -63,16 +70,3 @@ public class ReactNativeFullscreenModule extends ReactContextBaseJavaModule {
         super(reactContext);
     }
 }
-
-/**
- * 
- 
-▒█▀▀█ ▒█░▒█ ▒█▀▀▀█ ░█▀▀█ ▒█▀▀█ ▒█▀▀█ ▒█▀▀▀█ 
-▒█░░░ ▒█▀▀█ ░▄▄▄▀▀ ▒█▄▄█ ▒█▄▄█ ▒█▄▄█ ░▀▀▀▄▄ 
-▒█▄▄█ ▒█░▒█ ▒█▄▄▄█ ▒█░▒█ ▒█░░░ ▒█░░░ ▒█▄▄▄█
-
-COPYRIGHT CHZAPPS
- * 
- * */ 
-
-
