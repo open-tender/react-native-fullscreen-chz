@@ -1,2 +1,4 @@
 #Ignore all .json file
 *.json
+# except the manifest, which a git install needs
+!/package.json
